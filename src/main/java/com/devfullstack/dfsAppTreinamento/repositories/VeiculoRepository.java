@@ -6,4 +6,5 @@ import com.devfullstack.dfsAppTreinamento.entities.Veiculo;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 
+	Veiculo findByIdAndRenavan(Long id, Long renavan);
 }

@@ -1,52 +1,29 @@
-package com.devfullstack.dfsAppTreinamento.entities;
+package com.devfullstack.dfsAppTreinamento.dto;
 
-import java.util.Objects;
+import org.springframework.beans.BeanUtils;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.devfullstack.dfsAppTreinamento.entities.Veiculo;
 
-@Entity
-@Table(name = "tb_veiculo")
-public class Veiculo {
+public class VeiculoDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nomeModelo;
 	private Integer anoFabricacao;
 	private String marca;
 	private Integer qtdDeLugares;
 	private String cor;
-	@Column(unique = true)
 	private String placa;
-	@Column(unique = true)
-	private Long renavan;
+	private String renavan;
 	private String motor;
 	private String cambio;
-	@Column(columnDefinition = "TEXT")
 	private String descricao;
 
-	public Veiculo() {
+	public VeiculoDTO() {
 
 	}
 
-	public Veiculo(Long id, String nomeModelo, Integer anoFabricacao, String marca, Integer qtdDeLugares, String cor,
-			String placa, Long renavan, String motor, String cambio, String descricao) {
-		this.id = id;
-		this.nomeModelo = nomeModelo;
-		this.anoFabricacao = anoFabricacao;
-		this.marca = marca;
-		this.qtdDeLugares = qtdDeLugares;
-		this.cor = cor;
-		this.placa = placa;
-		this.renavan = renavan;
-		this.motor = motor;
-		this.cambio = cambio;
-		this.descricao = descricao;
+	public VeiculoDTO(Veiculo entity) {
+		BeanUtils.copyProperties(entity, this);
 	}
 
 	public Long getId() {
@@ -105,11 +82,11 @@ public class Veiculo {
 		this.placa = placa;
 	}
 
-	public Long getRenavan() {
+	public String getRenavan() {
 		return renavan;
 	}
 
-	public void setRenavan(Long renavan) {
+	public void setRenavan(String renavan) {
 		this.renavan = renavan;
 	}
 
@@ -135,23 +112,6 @@ public class Veiculo {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Veiculo other = (Veiculo) obj;
-		return Objects.equals(id, other.id);
 	}
 
 }
